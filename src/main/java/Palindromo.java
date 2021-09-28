@@ -52,9 +52,36 @@ public class Palindromo {
         return arreglo;
     }
 
+    public static boolean verificarPalindromo(String cadena){
+        cadena = cadena.toLowerCase().replace("á", "a").replace("é", "e")
+                .replace("í", "i").replace("ó", "o").replace("ú", "u")
+                .replace(" ", "").replace(".", "").replace(",", "");
 
+        boolean verificar = tratarCadena(cadena);
+        if (!verificar){
+            return false;
+        }else {
+            String invertida = new StringBuilder(cadena).reverse().toString();
+            return invertida.equals(cadena);
+        }
+    }
 
+    public static boolean tratarCadena(String cadena) {
+        if(cadena == null || cadena.equals("")) {
+            System.out.println("frase o palabra ingresada nula");
+            return false;
+        }
+        return true;
+    }
 
-
+    public static int cantidadPalindromosArchivo(String[] archivo){
+        int contadorPalindromos = 0;
+        for (int i = 0; i < archivo.length; i++) {
+            if (verificarPalindromo(archivo[i])){
+                contadorPalindromos++;
+            }
+        }
+        return contadorPalindromos;
+    }
 
 }
